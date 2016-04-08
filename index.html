@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="style.css">
+
+
+  </head>
+  <body>
+
+    <div class="joueur">
+      <img src="images/ciseaux.png"onclick="comparer(this,choixOrdi)">
+        <img src="images/feuille.png"onclick"comparer(this,choixOrdi)">
+          <img src="images/pierre.png"onclick="comparer(this,choixOrdi)">
+        </div>
+
+        <div class="ordinateur">
+          <img id="ciseaux" src="images/ciseaux.png">
+            <img id="feuille" src="images/feuille.png">
+              <img id="pierre" src="images/pierre.png">
+            </div>
+
+<div id="affichage">
+
+</div>
+
+<div id="resultat">
+
+</div>
+<input type="button" name="name" value="commencer"id="start">
+
+        <script type="text/javascript" src="jquery.js"></script>
+            <script type="text/javascript">
+
+            function affichage(){
+              document.getElementById("affichage").innerHTML = "Jouez!";
+            };
+
+
+
+$(document).ready(function(){
+  $('img').hide();
+$('input').click(function(){
+  temp = 0;
+  $(function(){
+    for (i=3 ;i > -1;i--){
+      setTimeout("$('#affichage').text('"+i+" secondes');",temp);
+      temp+=1000;
+    }
+  });
+  $(document).ready(function(){
+    setTimeout("affichage();",temp - 1000);
+  });
+
+  $('img').show();
+  $('#start').prop('value','nouvelle partie');
+});
+
+  });
+
+  $('.joueur img').click(function(){
+  $('.joueur img').hide();
+  $('.ordinateur img').hide();
+    $(this).show();
+
+    $('#'+choixOrdi).show();
+
+    });
+
+
+    var figure = ["ciseaux","feuille","pierre"];
+    var choixOrdi = aleatoire();
+
+
+    function aleatoire(){
+
+      carteAleatoire = figure[Math.floor(Math.random()*figure.length)];
+
+     return carteAleatoire;
+
+    }
+
+
+
+var pierre = "pierre.png";
+var feuille = "feuille.png";
+var ciseaux = "ciseaux.png";
+
+function comparer(user,ordi){
+if ((user==pierre) && (ordi==ciseaux)) {
+  $('#resultat').html('vous avez gagné');
+}
+
+else if  ((user==pierre) && (ordi==feuille)) {
+  $('#resultat').html('vous avez perdu');
+}
+
+
+else if ((user==feuille) && (ordi==pierre)){
+  $('#resultat').html('Vous avez gagné');
+}
+else if ((user==feuille) && (ordi==ciseaux)){
+  $('#resultat').html('Vous avez perdu');
+}
+
+else if ((user==ciseaux) && (ordi==feuille)){
+  $('#resultat').html('Vous avez perdu');
+}
+
+else if ((user==ciseaux) && (ordi==pierre)){
+  $('#resultat').html('Vous avez perdu');
+}
+
+else if (user==ordi) {
+  $('#resultat').html("Egalité");
+}
+
+}
+
+
+
+
+
+            </script>
+
+
+
+  </body>
+</html>
